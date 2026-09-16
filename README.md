@@ -1,32 +1,70 @@
-[NOTES.md](https://github.com/user-attachments/files/32266897/NOTES.md)
-# Before you deploy
+# Arshia Sharma — Portfolio
 
-A few things I couldn't fill in without inventing content — grab these from your
-own files and drop them in:
+Personal portfolio site for Arshia Sharma, a Data Science student at Purdue
+University (The Data Mine Learning Community) interested in machine learning,
+data engineering, and software development.
 
-1. **Project screenshots.** I left dashed placeholder boxes in the Projects
-   section for Sonar.ai and the Purdue Research Matchmaker. Swap the
-   `.shot-placeholder` div in each project card for an `<img>` pointing at a real
-   screenshot (e.g. `<img src="sonar-screenshot.png" alt="Sonar.ai dashboard">`).
+Live: https://arshia-portfolio.onrender.com
 
-2. **Resume PDF.** All resume buttons (hero "view resume" and the contact
-   section's "View Resume" / "Download Resume") now point at
-   `Arshia_Sharma_Resume.pdf`. Just make sure that file sits in the same
-   folder as `index.html` when you deploy — no other setup needed. "View"
-   opens it in a new tab; "Download" uses the HTML `download` attribute so it
-   saves straight to the visitor's device instead of navigating away.
+## About
 
-3. **Purdue Research Matchmaker live link.** I could only find a GitHub
-   repo (`github.com/arshiasharma08/purdue_research`) for this one, not a
-   public deployment — your old site said "publicly deployed" but I couldn't
-   find the actual URL. If it's live somewhere, add a "live demo" button next
-   to the GitHub button in that project card.
+A single-page portfolio designed to read like a personal site rather than a
+résumé dump — an intro, experience, projects, skills, coursework, and a way
+to get in touch. Built plain HTML/CSS/JS, no framework or build step.
 
-4. **Coursework.** I listed Calculus I as MA 16100 (Purdue's standard first
-   calculus course) — double check that's the right course number for you.
+## Structure
+
+```
+.
+├── index.html                 # all page content/sections
+├── style.css                  # design tokens + styles
+├── script.js                  # nav toggle, active-link highlight, scroll reveal
+├── Arshia_Sharma_Resume.pdf   # résumé, linked from the hero + contact sections
+└── NOTES.md                   # what still needs to be filled in (screenshots, etc.)
+```
+
+## Sections
+
+- **Hero** — intro, links, and an `arshia.json`-styled code card
+- **About** — short bio
+- **Experience** — NexGen Tech Solutions, Zimetrics LLC
+- **Projects** — [Sonar.ai](https://github.com/arshiasharma08/sonar-music-ai),
+  [Purdue Research Matchmaker](https://github.com/arshiasharma08/purdue_research)
+- **Skills** — grouped by languages / data + ml / tools + platforms / web
+- **Coursework** — current Purdue courses + education
+- **Contact** — email, LinkedIn, GitHub, résumé (view + download)
+
+## Design
+
+- **Palette** — warm cream background, charcoal text, Purdue gold used
+  sparingly, soft lavender as a secondary accent
+- **Type** — Manrope (headings/body), JetBrains Mono (labels, tags, code
+  details)
+- Responsive down to mobile, respects `prefers-reduced-motion`, semantic HTML
+  with visible focus states
+
+See `NOTES.md` for outstanding items before this fully replaces the live site
+(project screenshots, confirming the Matchmaker's live URL if one exists).
+
+## Running locally
+
+No build step — just open `index.html` in a browser, or serve the folder:
+
+```
+python3 -m http.server 8000
+```
 
 ## Deploying
 
-This is a plain static site — `index.html`, `style.css`, `script.js`. You can
-deploy it on Render (like your current site) as a Static Site, or drag-and-drop
-the folder into Netlify/Vercel. No build step needed.
+Static site, deployable as-is:
+
+- **Render** — Static Site, no build command, publish directory `.`
+- **Netlify / Vercel** — drag-and-drop the folder or connect the repo
+
+## Tech
+
+HTML5 · CSS3 · JavaScript · Google Fonts (Manrope, JetBrains Mono)
+
+---
+
+Built by Arshia Sharma.
