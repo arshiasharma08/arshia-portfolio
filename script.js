@@ -1,122 +1,57 @@
-/* ============================================================================
-   ARSHIA SHARMA PORTFOLIO — JAVASCRIPT
-   ========================================================================== */
-
-// Navigation Toggle
+// ---- mobile nav toggle ----
 const navToggle = document.getElementById('navToggle');
 const navMenu = document.getElementById('navMenu');
 
-if (navToggle && navMenu) {
-  navToggle.addEventListener('click', () => {
-    const isOpen = navMenu.classList.contains('active');
-    navMenu.classList.toggle('active');
-    navToggle.setAttribute('aria-expanded', !isOpen);
-  });
+navToggle.addEventListener('click', () => {
+  const isOpen = navMenu.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', String(isOpen));
+});
 
-  // Close menu when link is clicked
-  const navLinks = navMenu.querySelectorAll('[data-nav]');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navMenu.classList.remove('active');
-      navToggle.setAttribute('aria-expanded', false);
-    });
-  });
-}
-
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const href = this.getAttribute('href');
-    if (href === '#' || href === '#top') return;
-    
-    const target = document.querySelector(href);
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
+navMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navMenu.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
   });
 });
 
-// Resume button handler
-const resumeBtn = document.getElementById('resumeBtn');
-if (resumeBtn) {
-  resumeBtn.addEventListener('click', (e) => {
-    // Resume file will be in public folder
-    e.preventDefault();
-    window.open('Arshia_Sharma_Resume.pdf', '_blank');
-  });
-}
+// ---- active nav link on scroll ----
+const sections = document.querySelectorAll('main section[id]');
+const navLinks = document.querySelectorAll('[data-nav]');
 
-// Intersection Observer for section animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
+const setActive = (id) => {
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+  });
 };
 
-const observer = new IntersectionObserver((entries) => {
+const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
+    if (entry.isIntersecting) setActive(entry.target.id);
   });
-}, observerOptions);
+}, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
 
-// Observe all sections
-document.querySelectorAll('.section').forEach(section => {
-  section.style.opacity = '0';
-  section.style.transform = 'translateY(20px)';
-  section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  observer.observe(section);
-});
+sections.forEach(section => sectionObserver.observe(section));
 
-// Add active nav state on scroll
-window.addEventListener('scroll', () => {
-  const sections = document.querySelectorAll('section[id]');
-  let current = '';
+// ---- scroll reveal (respects prefers-reduced-motion) ----
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    if (window.scrollY >= sectionTop - 200) {
-      current = section.getAttribute('id');
-    }
-  });
+const revealTargets = document.querySelectorAll(
+  '.exp-card, .project-card, .skill-group, .about-grid, .coursework-grid, .education-card'
+);
 
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${current}`) {
-      link.classList.add('active');
-    }
-  });
-});
+revealTargets.forEach(el => el.classList.add('reveal'));
 
-// Lazy load images
-if ('IntersectionObserver' in window) {
-  const imageObserver = new IntersectionObserver((entries, observer) => {
+if (prefersReducedMotion) {
+  revealTargets.forEach(el => el.classList.add('is-visible'));
+} else {
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const img = entry.target;
-        img.src = img.dataset.src || img.src;
-        img.classList.add('loaded');
-        observer.unobserve(img);
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
       }
     });
-  });
+  }, { threshold: 0.12 });
 
-  document.querySelectorAll('img[data-src]').forEach(img => {
-    imageObserver.observe(img);
-  });
+  revealTargets.forEach(el => revealObserver.observe(el));
 }
-
-// Scroll animation for currently strip
-const currentlyStrip = document.querySelector('.currently-items');
-if (currentlyStrip) {
-  // Duplicate content for seamless loop
-  const content = currentlyStrip.textContent;
-  currentlyStrip.textContent = content + ' • ' + content;
-}
-
-console.log('✨ Arshia Sharma Portfolio Loaded');
