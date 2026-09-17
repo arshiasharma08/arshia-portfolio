@@ -1,359 +1,792 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arshia Sharma | Data Science @ Purdue</title>
-  <meta name="description" content="Portfolio of Arshia Sharma, a Data Science student at Purdue University building projects across data science, machine learning, data engineering, and software development.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arshia Sharma — Data Science @ Purdue</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <meta property="og:title" content="Arshia Sharma | Data Science @ Purdue">
-  <meta property="og:description" content="Portfolio of Arshia Sharma, a Data Science student at Purdue University building projects across data science, machine learning, data engineering, and software development.">
-  <meta property="og:type" content="website">
+        :root {
+            /* Background & Surface */
+            --bg-primary: #FBF7F4;
+            --bg-surface: #F4ECE8;
+            
+            /* Text */
+            --text-primary: #171717;
+            --text-secondary: #665F5A;
+            
+            /* Accents */
+            --accent-rose: #DDB8C7;
+            --accent-rose-deep: #C997AC;
+            
+            /* Borders & Dividers */
+            --border-color: #E9DFD8;
+            --border-dark: rgba(23, 23, 23, 0.08);
+            
+            /* Dark Accent */
+            --dark-charcoal: #25211F;
+            
+            /* JSON Card */
+            --json-bg: #2A2526;
+            --json-text: #F6EFEF;
+            --json-key: #DDB8C7;
+            --json-string: #F3DDE5;
+            --json-number: #C997AC;
+        }
 
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%230D0F12%22/><text x=%2250%22 y=%2266%22 font-family=%22monospace%22 font-size=%2244%22 font-weight=%22700%22 fill=%22%23BFA875%22 text-anchor=%22middle%22>AS</text></svg>">
+        html {
+            scroll-behavior: smooth;
+        }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
 
-  <link rel="stylesheet" href="style.css">
+        /* NAVIGATION */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: #FDFBF9;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-rose-deep);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-rose-deep);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-left h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .hero-left .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .hero-left .intro {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.85rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent-rose-deep);
+            color: white;
+            border: 1px solid var(--accent-rose-deep);
+        }
+
+        .btn-primary:hover {
+            background: #B8869B;
+            border-color: #B8869B;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(201, 151, 172, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--accent-rose);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-surface);
+            border-color: var(--accent-rose-deep);
+            color: var(--accent-rose-deep);
+        }
+
+        /* JSON CARD */
+        .json-card {
+            background: var(--json-bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            padding: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--json-text);
+            overflow: hidden;
+        }
+
+        .json-card .json-line {
+            display: flex;
+        }
+
+        .json-key {
+            color: var(--json-key);
+            margin-right: 0.5rem;
+        }
+
+        .json-string {
+            color: var(--json-string);
+        }
+
+        .json-number {
+            color: var(--json-number);
+        }
+
+        /* PROJECTS SECTION */
+        .projects {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--text-primary);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--accent-rose);
+        }
+
+        .project-card {
+            margin-bottom: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .project-card:nth-child(even) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .project-card:nth-child(even) .project-img {
+            order: -1;
+        }
+
+        .project-img {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-tag {
+            font-size: 0.85rem;
+            padding: 0.3rem 0.8rem;
+            background: var(--bg-surface);
+            color: var(--text-secondary);
+            border-radius: 3px;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-number {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-rose-deep);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .project-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .detail-item {
+            font-size: 0.9rem;
+        }
+
+        .detail-label {
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .detail-value {
+            color: var(--text-primary);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .project-link {
+            font-size: 0.95rem;
+            color: var(--accent-rose-deep);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            gap: 1rem;
+        }
+
+        /* EXPERIENCE SECTION */
+        .experience {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .exp-item {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+        }
+
+        .exp-item:last-child {
+            border-bottom: none;
+        }
+
+        .exp-date {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .exp-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--text-primary);
+        }
+
+        .exp-role {
+            font-size: 0.95rem;
+            color: var(--accent-rose-deep);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .exp-description {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* SKILLS SECTION */
+        .skills {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            font-size: 0.95rem;
+            padding: 1rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 3px;
+            text-align: center;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            border-color: var(--accent-rose);
+            background: #FDF9F7;
+        }
+
+        /* COURSEWORK SECTION */
+        .coursework {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .course-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            display: grid;
+            grid-template-columns: 1fr 200px;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .course-item:last-child {
+            border-bottom: none;
+        }
+
+        .course-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .course-semester {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: right;
+        }
+
+        /* FOOTER / CONTACT */
+        .contact {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 3rem 2rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .contact p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            color: var(--accent-rose-deep);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--text-primary);
+            text-decoration: underline;
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 4rem auto 2rem;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin: 2rem auto;
+            }
+
+            .hero-left h1 {
+                font-size: 2rem;
+            }
+
+            .project-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .project-card:nth-child(even) .project-img {
+                order: 0;
+            }
+
+            .exp-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .course-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .course-semester {
+                text-align: left;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <!-- ===== NAV ===== -->
-  <header class="nav-wrap">
-    <nav class="nav" aria-label="Primary">
-      <a href="#top" class="nav-brand">arshia</a>
-      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links" id="navMenu">
-        <li><a href="#about" data-nav>about</a></li>
-        <li><a href="#experience" data-nav>experience</a></li>
-        <li><a href="#projects" data-nav>projects</a></li>
-        <li><a href="#skills" data-nav>skills</a></li>
-        <li><a href="#coursework" data-nav>coursework</a></li>
-        <li><a href="#contact" data-nav>contact</a></li>
-      </ul>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">Arshia Sharma</div>
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
-  </header>
 
-  <main id="main">
-
-    <!-- ===== HERO ===== -->
-    <section class="hero" id="top">
-      <div class="hero-inner">
-        <div class="hero-text">
-          <p class="kicker">Purdue &middot; Data Science</p>
-          <h1 class="hero-title">Arshia Sharma</h1>
-          <p class="hero-role">Data Science <span class="at">@</span> Purdue University</p>
-          <p class="hero-body">
-            I build with data and code, with interests in machine learning,
-            data engineering, and software development.
-          </p>
-          <div class="hero-cta">
-            <a href="#projects" class="btn btn-primary">View Projects</a>
-            <a href="Arshia_Sharma_Resume.pdf" class="btn btn-ghost" id="resumeBtn" target="_blank" rel="noopener">View Resume</a>
-          </div>
-          <ul class="hero-links">
-            <li>
-              <a href="https://github.com/arshiasharma08" target="_blank" rel="noopener">
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/arshia-sharma-31621b357" target="_blank" rel="noopener">
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M14.82 0H1.18C.53 0 0 .52 0 1.16v13.68C0 15.48.53 16 1.18 16h13.64c.65 0 1.18-.52 1.18-1.16V1.16C16 .52 15.47 0 14.82 0ZM4.75 13.6H2.38V6h2.37v7.6ZM3.56 4.97c-.76 0-1.38-.62-1.38-1.38 0-.76.62-1.38 1.38-1.38.76 0 1.38.62 1.38 1.38 0 .76-.62 1.38-1.38 1.38ZM13.6 13.6h-2.37V9.9c0-.88-.02-2.02-1.23-2.02-1.24 0-1.43.97-1.43 1.96v3.76H6.2V6h2.28v1.04h.03c.32-.6 1.09-1.23 2.24-1.23 2.4 0 2.85 1.58 2.85 3.63v4.16Z"/></svg>
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <a href="mailto:arshiasharma08@gmail.com">
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M1.5 3h13c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1h-13c-.55 0-1-.45-1-1V4c0-.55.45-1 1-1Zm.5 1.6V12h12V4.6L8 9.2 2 4.6Zm.6-.6L8 8l5.4-4H2.6Z"/></svg>
-                Email
-              </a>
-            </li>
-          </ul>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-left">
+            <h1>Arshia Sharma</h1>
+            <p class="subtitle">Data Science @ Purdue University</p>
+            <p class="intro">
+                Incoming Purdue data scientist with a foundation in machine learning, cloud infrastructure, and full-stack development. Experienced in ETL pipelines, analytics, and building scalable systems.
+            </p>
+            <div class="button-group">
+                <a href="#" class="btn btn-primary">Resume</a>
+                <a href="mailto:arshia@example.com" class="btn btn-secondary">Get in touch</a>
+            </div>
         </div>
 
-        <div class="hero-visual" aria-hidden="true">
-          <div class="code-card">
-            <div class="code-card-topbar">
-              <div class="code-dots"><span></span><span></span><span></span></div>
-              <div class="code-tab">arshia.json</div>
+        <div class="hero-right">
+            <div class="json-card">
+                <div class="json-line"><span>{</span></div>
+                <div class="json-line">
+                    <span class="json-key">"name":</span>
+                    <span class="json-string">"Arshia Sharma"</span>
+                </div>
+                <div class="json-line">
+                    <span class="json-key">"university":</span>
+                    <span class="json-string">"Purdue University"</span>
+                </div>
+                <div class="json-line">
+                    <span class="json-key">"major":</span>
+                    <span class="json-string">"Data Science"</span>
+                </div>
+                <div class="json-line">
+                    <span class="json-key">"minors":</span>
+                    <span class="json-string">["Computer Science", "AI"]</span>
+                </div>
+                <div class="json-line">
+                    <span class="json-key">"experience":</span>
+                    <span class="json-number">2</span>
+                    <span class="json-string">internships</span>
+                </div>
+                <div class="json-line">
+                    <span class="json-key">"skills":</span>
+                    <span class="json-string">["Python", "ML", "ETL", "Cloud"]</span>
+                </div>
+                <div class="json-line">
+                    <span class="json-key">"open_to":</span>
+                    <span class="json-string">"Research & Data Science roles"</span>
+                </div>
+                <div class="json-line"><span>}</span></div>
             </div>
-            <pre class="code-body"><code><span class="ln">1</span><span class="tok-brace">{</span>
-<span class="ln">2</span>  <span class="tok-key">"school"</span>: <span class="tok-str">"Purdue University"</span>,
-<span class="ln">3</span>  <span class="tok-key">"major"</span>: <span class="tok-str">"Data Science"</span>,
-<span class="ln">4</span>  <span class="tok-key">"class_of"</span>: <span class="tok-num">2030</span>,
-<span class="ln">5</span>  <span class="tok-key">"interests"</span>: [
-<span class="ln">6</span>    <span class="tok-str">"machine learning"</span>,
-<span class="ln">7</span>    <span class="tok-str">"data engineering"</span>,
-<span class="ln">8</span>    <span class="tok-str">"software development"</span>
-<span class="ln">9</span>  ],
-<span class="ln">10</span>  <span class="tok-key">"currently"</span>: <span class="tok-str">"building &amp; learning</span><span class="cursor">▌</span><span class="tok-str">"</span>
-<span class="ln">11</span><span class="tok-brace">}</span></code></pre>
-            <div class="code-card-footer">
-              <span class="status-dot"></span> currently building
-            </div>
-          </div>
         </div>
-      </div>
-
-      <div class="currently-strip" role="note" aria-label="Currently">
-        <span class="currently-label">Currently</span>
-        <span class="currently-items">CS 18000&nbsp;&nbsp;&middot;&nbsp;&nbsp;The Data Mine&nbsp;&nbsp;&middot;&nbsp;&nbsp;Java&nbsp;&nbsp;&middot;&nbsp;&nbsp;Building side projects&nbsp;&nbsp;&middot;&nbsp;&nbsp;Purdue '30</span>
-      </div>
     </section>
 
-    <!-- ===== ABOUT ===== -->
-    <section class="section section-alt" id="about">
-      <div class="section-inner about-grid">
-        <div class="section-head">
-          <p class="section-eyebrow">01 / About</p>
-          <h2 class="section-title">About Me</h2>
+    <!-- PROJECTS SECTION -->
+    <section class="projects" id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+
+        <div class="project-card">
+            <div class="project-img">
+                [Purdue Research Matchmaker Screenshot]
+            </div>
+            <div class="project-content">
+                <div class="project-number">01</div>
+                <h3>Purdue Research Matchmaker</h3>
+                <div class="project-meta">
+                    <span class="project-tag">React</span>
+                    <span class="project-tag">Flask</span>
+                    <span class="project-tag">Full Stack</span>
+                </div>
+                <p class="project-description">
+                    Interactive platform connecting undergraduate students with research opportunities across Purdue departments. Features semantic search, professor profiles, and a curated research pathway explorer.
+                </p>
+                <div class="project-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Role</div>
+                        <div class="detail-value">Full Stack Developer</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Timeline</div>
+                        <div class="detail-value">3 months</div>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">View Live →</a>
+                    <a href="#" class="project-link">GitHub →</a>
+                </div>
+            </div>
         </div>
-        <div class="about-body">
-          <p>I'm a Data Science student at Purdue University and part of The Data Mine Learning Community. I'm interested in machine learning, data engineering, and software development, especially projects that turn data into useful, interactive tools.</p>
-          <p>I'm currently strengthening my programming and data science foundation while continuing to build projects outside of class.</p>
-          <ul class="about-tags">
-            <li>Purdue Data Science, Class of 2030</li>
-            <li>The Data Mine</li>
-            <li>Actively building</li>
-          </ul>
+
+        <div class="project-card">
+            <div class="project-img">
+                [NexGen UX Audit Screenshot]
+            </div>
+            <div class="project-content">
+                <div class="project-number">02</div>
+                <h3>NexGen Tech Solutions — UX Redesign</h3>
+                <div class="project-meta">
+                    <span class="project-tag">UX/UI</span>
+                    <span class="project-tag">Design</span>
+                    <span class="project-tag">Analysis</span>
+                </div>
+                <p class="project-description">
+                    Comprehensive UX audit and redesign of a B2B tech services site. Reduced homepage complexity from 22 offerings to a clear value hierarchy, implemented AI-first positioning, and improved conversion pathways.
+                </p>
+                <div class="project-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Role</div>
+                        <div class="detail-value">Design & Analysis</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Impact</div>
+                        <div class="detail-value">5.2 → 8+ score</div>
+                    </div>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">Case Study →</a>
+                    <a href="#" class="project-link">Design →</a>
+                </div>
+            </div>
         </div>
-      </div>
+
     </section>
 
-    <!-- ===== EXPERIENCE ===== -->
-    <section class="section" id="experience">
-      <div class="section-inner">
-        <div class="section-head">
-          <p class="section-eyebrow">02 / Experience</p>
-          <h2 class="section-title">Experience</h2>
+    <!-- EXPERIENCE SECTION -->
+    <section class="experience" id="experience">
+        <h2 class="section-title">Experience</h2>
+
+        <div class="exp-item">
+            <div class="exp-date">2024</div>
+            <div class="exp-content">
+                <h4>NexGen Tech Solutions</h4>
+                <p class="exp-role">Data & Analytics Intern</p>
+                <p class="exp-description">
+                    Developed ETL pipelines on Azure and Apache Spark. Built dashboards in Power BI. Optimized data workflows for enterprise clients.
+                </p>
+            </div>
         </div>
 
-        <div class="timeline">
-          <article class="exp-card">
-            <div class="exp-meta">
-              <span class="exp-dates">Jun 2025 &ndash; Aug 2025</span>
-              <span class="exp-location">Frisco, TX</span>
+        <div class="exp-item">
+            <div class="exp-date">2023</div>
+            <div class="exp-content">
+                <h4>Zimetrics</h4>
+                <p class="exp-role">Machine Learning Intern</p>
+                <p class="exp-description">
+                    Implemented ML models for predictive analytics. Created interactive dashboards. Conducted data exploration and feature engineering.
+                </p>
             </div>
-            <h3 class="exp-role">Software Intern</h3>
-            <p class="exp-company">NexGen Tech Solutions</p>
-            <ul class="exp-list">
-              <li>Built and tested data ingestion and transformation workflows using Python, Spark SQL, and Azure Data Lake</li>
-              <li>Debugged data and code issues with Git/GitHub while contributing to tasks in an Agile development environment</li>
-              <li>Created and updated dashboards to track data trends, project metrics, and reporting results</li>
-            </ul>
-            <ul class="tag-row">
-              <li>Python</li>
-              <li>Spark SQL</li>
-              <li>Azure</li>
-              <li>Azure Data Lake</li>
-              <li>Git</li>
-              <li>GitHub</li>
-              <li>Power BI</li>
-            </ul>
-          </article>
-
-          <article class="exp-card">
-            <div class="exp-meta">
-              <span class="exp-dates">Jun 2024 &ndash; Jul 2024</span>
-              <span class="exp-location">Austin, TX</span>
-            </div>
-            <h3 class="exp-role">Data Science Intern</h3>
-            <p class="exp-company">Zimetrics LLC</p>
-            <ul class="exp-list">
-              <li>Developed and tested machine learning models in Python and TensorFlow for forecasting and lead-scoring applications</li>
-              <li>Prepared datasets through data cleaning, feature selection, and model evaluation</li>
-              <li>Built interactive Power BI dashboards to visualize trends, performance metrics, and business insights</li>
-            </ul>
-            <ul class="tag-row">
-              <li>Python</li>
-              <li>TensorFlow</li>
-              <li>Pandas</li>
-              <li>Power BI</li>
-            </ul>
-          </article>
         </div>
-      </div>
+
+        <div class="exp-item">
+            <div class="exp-date">2023</div>
+            <div class="exp-content">
+                <h4>Dartmouth Finance Certificate</h4>
+                <p class="exp-role">Completed Certification</p>
+                <p class="exp-description">
+                    Comprehensive finance education covering corporate finance, investments, and financial analysis.
+                </p>
+            </div>
+        </div>
+
     </section>
 
-    <!-- ===== PROJECTS ===== -->
-    <section class="section section-alt section-projects" id="projects">
-      <div class="section-inner">
-        <div class="section-head">
-          <p class="section-eyebrow">03 / Projects</p>
-          <h2 class="section-title">Selected Projects</h2>
-        </div>
-
-        <div class="projects-list">
-
-          <article class="project-card project-media-right">
-            <div class="project-media">
-              <img
-                src="sonar.png"
-                alt="Sonar.ai landing screen showing search bar and audio intelligence branding"
-                class="project-screenshot"
-                loading="lazy"
-              >
-            </div>
-            <div class="project-info">
-              <p class="project-number">01 / Sonar.ai</p>
-              <p class="project-category">Audio Intelligence Platform</p>
-              <h3 class="project-name">Sonar.ai</h3>
-              <p class="project-desc">
-                An interactive music analytics platform that uses audio-feature data
-                to recommend similar tracks, classify song moods, visualize musical
-                characteristics, and compare songs using feature-based similarity.
-              </p>
-              <ul class="tag-row">
-                <li>Python</li>
-                <li>Flask</li>
-                <li>JavaScript</li>
-                <li>HTML/CSS</li>
-              </ul>
-              <div class="project-actions">
-                <a class="project-link" href="https://spotify-song-analyzer.onrender.com/" target="_blank" rel="noopener">Live Demo <span aria-hidden="true">&#8599;</span></a>
-                <a class="project-link" href="https://github.com/arshiasharma08/sonar-music-ai" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&#8599;</span></a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card project-media-left">
-            <div class="project-media">
-              <img
-                src="research-matchmaker.png"
-                alt="Purdue Research Matchmaker landing screen with a research interest search bar"
-                class="project-screenshot"
-                loading="lazy"
-              >
-            </div>
-            <div class="project-info">
-              <p class="project-number">02 / Research Matchmaker</p>
-              <p class="project-category">Research Discovery Platform</p>
-              <h3 class="project-name">Purdue Research Matchmaker</h3>
-              <p class="project-desc">
-                A research discovery platform that helps students explore Purdue
-                faculty and research opportunities through keyword-based matching,
-                filtering, faculty discovery, and outreach email generation.
-              </p>
-              <ul class="tag-row">
-                <li>Python</li>
-                <li>Flask</li>
-                <li>JavaScript</li>
-                <li>HTML/CSS</li>
-              </ul>
-              <div class="project-actions">
-                <a class="project-link" href="https://github.com/arshiasharma08/purdue_research" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&#8599;</span></a>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== SKILLS ===== -->
-    <section class="section" id="skills">
-      <div class="section-inner">
-        <div class="section-head">
-          <p class="section-eyebrow">04 / Skills</p>
-          <h2 class="section-title">Skills</h2>
-        </div>
-
+    <!-- SKILLS SECTION -->
+    <section class="skills" id="skills">
+        <h2 class="section-title">Skills & Technologies</h2>
         <div class="skills-grid">
-          <div class="skill-group">
-            <h3 class="skill-label">Languages</h3>
-            <p class="skill-items">Python &middot; SQL &middot; Java &middot; JavaScript &middot; HTML/CSS</p>
-          </div>
-          <div class="skill-group">
-            <h3 class="skill-label">Data + ML</h3>
-            <p class="skill-items">Pandas &middot; TensorFlow &middot; Spark SQL &middot; Machine Learning &middot; Data Visualization</p>
-          </div>
-          <div class="skill-group">
-            <h3 class="skill-label">Tools + Platforms</h3>
-            <p class="skill-items">Git &middot; GitHub &middot; Azure &middot; Azure Data Lake &middot; Power BI &middot; Render</p>
-          </div>
-          <div class="skill-group">
-            <h3 class="skill-label">Web</h3>
-            <p class="skill-items">Flask &middot; HTML/CSS &middot; JavaScript</p>
-          </div>
+            <div class="skill-item">Python</div>
+            <div class="skill-item">Machine Learning</div>
+            <div class="skill-item">SQL</div>
+            <div class="skill-item">ETL / Data Pipelines</div>
+            <div class="skill-item">Apache Spark</div>
+            <div class="skill-item">Azure</div>
+            <div class="skill-item">Power BI</div>
+            <div class="skill-item">React</div>
+            <div class="skill-item">JavaScript</div>
+            <div class="skill-item">Flask</div>
+            <div class="skill-item">Data Analysis</div>
+            <div class="skill-item">Statistics</div>
         </div>
-      </div>
     </section>
 
-    <!-- ===== COURSEWORK + EDUCATION ===== -->
-    <section class="section section-alt" id="coursework">
-      <div class="section-inner coursework-grid">
-        <div>
-          <div class="section-head">
-            <p class="section-eyebrow">05 / Coursework</p>
-            <h2 class="section-title">Coursework</h2>
-          </div>
-          <ul class="course-list">
-            <li>
-              <span class="course-code">CS 18000</span>
-              <span class="course-name">Problem Solving &amp; Object-Oriented Programming</span>
-            </li>
-            <li>
-              <span class="course-code">CS 19300</span>
-              <span class="course-name">Tools</span>
-            </li>
-            <li>
-              <span class="course-code">TDM 10100</span>
-              <span class="course-name">The Data Mine</span>
-            </li>
-            <li>
-              <span class="course-code">MA 16100</span>
-              <span class="course-name">Calculus I</span>
-            </li>
-          </ul>
+    <!-- COURSEWORK SECTION -->
+    <section class="coursework" id="coursework">
+        <h2 class="section-title">Relevant Coursework</h2>
+
+        <div class="course-item">
+            <div class="course-name">Data Mining & Machine Learning</div>
+            <div class="course-semester">Fall 2024</div>
+        </div>
+        <div class="course-item">
+            <div class="course-name">Statistical Methods for Data Science</div>
+            <div class="course-semester">Fall 2024</div>
+        </div>
+        <div class="course-item">
+            <div class="course-name">Database Systems</div>
+            <div class="course-semester">Spring 2024</div>
+        </div>
+        <div class="course-item">
+            <div class="course-name">Algorithms & Data Structures</div>
+            <div class="course-semester">Spring 2024</div>
+        </div>
+        <div class="course-item">
+            <div class="course-name">Discrete Mathematics</div>
+            <div class="course-semester">Fall 2023</div>
         </div>
 
-        <div class="education-card">
-          <h3>Education</h3>
-          <p class="edu-school">Purdue University</p>
-          <p class="edu-detail">West Lafayette, Indiana</p>
-          <p class="edu-detail">B.S. in Data Science</p>
-          <p class="edu-detail">Expected Graduation: May 2030</p>
-          <p class="edu-detail edu-dim">The Data Mine Learning Community</p>
-        </div>
-      </div>
     </section>
 
-    <!-- ===== CONTACT ===== -->
-    <section class="section section-contact" id="contact">
-      <div class="section-inner">
-        <div class="section-head center">
-          <p class="section-eyebrow">06 / Contact</p>
-          <h2 class="section-title">Get in Touch</h2>
-          <p class="contact-sub">
-            I'm always interested in learning about internships, research opportunities,
-            interesting projects, and new people to build with.
-          </p>
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+        <h2>Let's Connect</h2>
+        <p>Interested in research, data science opportunities, or collaboration?</p>
+        <div class="contact-links">
+            <a href="mailto:arshia@example.com" class="contact-link">Email</a>
+            <a href="https://linkedin.com" class="contact-link">LinkedIn</a>
+            <a href="https://github.com" class="contact-link">GitHub</a>
+            <a href="https://twitter.com" class="contact-link">Twitter</a>
         </div>
-
-        <ul class="contact-links">
-          <li><a href="mailto:arshiasharma08@gmail.com">Email</a></li>
-          <li><a href="https://www.linkedin.com/in/arshia-sharma-31621b357" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="https://github.com/arshiasharma08" target="_blank" rel="noopener">GitHub</a></li>
-          <li><a href="Arshia_Sharma_Resume.pdf" target="_blank" rel="noopener">View Resume</a></li>
-        </ul>
-      </div>
     </section>
 
-  </main>
+    <footer>
+        <p>Designed & built by Arshia Sharma. All rights reserved.</p>
+    </footer>
 
-  <footer class="footer">
-    <p>Designed &amp; built by Arshia Sharma</p>
-    <p class="footer-fine">&copy; 2026 Arshia Sharma. All rights reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
